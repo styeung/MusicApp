@@ -6,7 +6,7 @@
 <p><i><%= @track.edition %> track</i></p>
 <a href="<%= edit_track_url(@track) %>">Edit Track Info</a>
 <p>
-<%= @track.lyrics %>
+<%= simple_format(@track.lyrics) %>
 
 </p>
 <br>

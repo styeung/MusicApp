@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :require_no_user!, only: [:new, :create]
+  before_filter :require_user!, only: [:show]
 
   def new
     render :new
@@ -20,6 +22,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     render :show
   end
+
+  private
 
   def user_params
     params.require(:user).permit(:email, :password)
