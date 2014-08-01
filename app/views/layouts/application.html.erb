@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MusicApp</title>
+</head>
+<body>
+  <% if logged_in? %>
+    <p>Welcome <%= current_user.email %>
+    <%= log_out_form %>
+  <% else %>
+    <a href="<%= new_session_url %>">Log in</a>
+    |
+    <a href="<%= new_user_url %>">Sign up</a>
+  <% end %>
+<%= yield %>
+
+</body>
+</html>
