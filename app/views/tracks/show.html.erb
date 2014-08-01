@@ -1,0 +1,11 @@
+<% current_album = Album.find(@track.album_id)%>
+<% current_band= Band.find(current_album.band_id)%>
+
+<h1><%= @track.name %> by <%= current_band.name %></h1>
+<h2><%= current_album.name %>
+<br>
+<p><i><%= @track.edition %> track</i></p>
+<br>
+<p>
+<%= @track.lyrics %>
+</p>

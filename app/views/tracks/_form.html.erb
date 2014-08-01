@@ -1,0 +1,54 @@
+<% current_album = @album %>
+<% current_band = Band.find(current_album.band_id)%>
+
+<%if process == "create"%>
+  <% rest_modifier_string = "POST" %>
+  <% submit_button_string = "Create Track" %>
+  <% action_url = tracks_url %>
+<% elsif process == "update" %>
+  <% rest_modifier_string = "PATCH" %>
+  <% submit_button_string = "Update Track" %>
+  <% action_url = track_url(@track) %>
+<% end %>
+
+<form action="<%= action_url %>" method="POST">
+  <%= auth_token %>
+  <%= rest_modifier(rest_modifier_string)%>
+  <label>
+    Album
+    <select name="track[album_id]">
+      <% current_band.albums.each do |album|%>
+        <option value="<%= album.id %>"
+          <%= "selected" if current_album.id == album.id %>>
+          <%= album.name %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+  <br>
+  <label>
+    Track name
+    <input type="text" name="track[name]" value="<%= @track.name %>">
+  </label>
+  <br>
+  Edition
+  <br>
+  <label>
+    Regular
+    <input type="radio" name="track[edition]" value="regular"
+    <%= "checked" if @track.edition == "regular" %>>
+  </label>
+  <label>
+    Bonus
+    <input type="radio" name="track[edition]" value="bonus"
+    <%= "checked" if @track.edition == "bonus" %>>
+  </label>
+  <br>
+  <label>
+    Lyrics
+    <textarea name="track[lyrics]"><%= @track.lyrics %>
+    </textarea>
+  </label>
+  <br>
+  <input type="submit" value=<%= submit_button_string %>>
+</form>

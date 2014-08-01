@@ -1,0 +1,47 @@
+<% current_band = @band %>
+
+<%if process == "create"%>
+  <% rest_modifier_string = "POST" %>
+  <% submit_button_string = "Create Album" %>
+  <% action_url = albums_url %>
+<% elsif process == "update" %>
+  <% rest_modifier_string = "PATCH" %>
+  <% submit_button_string = "Update Album" %>
+  <% action_url = album_url(@album) %>
+<% end %>
+
+<form action="<%= action_url %>" method="POST">
+  <%= auth_token %>
+  <%= rest_modifier(rest_modifier_string) %>
+  <label>
+    Band
+    <select name="album[band_id]">
+      <% Band.all.each do |band| %>
+        <option value="<%= band.id %>"
+          <%= "selected" if current_band.id == band.id %>>
+          <%= band.name %>
+        </option>
+      <% end %>
+    </select>
+  </label>
+  <br>
+  <label>
+    Album name
+    <input type="text" name="album[name]" value="<%= @album.name %>">
+  </label>
+  <br>
+  Recording Environment
+  <br>
+  <label>
+    Studio
+    <input type="radio" name="album[environment]" value="studio"
+    <%= "checked" if @album.environment == "studio" %>>
+  </label>
+  <label>
+    Live
+    <input type="radio" name="album[environment]" value="live"
+    <%= "checked" if @album.environment == "live" %>>
+  </label>
+  <br>
+  <input type="submit" value=<%= submit_button_string %>>
+</form>

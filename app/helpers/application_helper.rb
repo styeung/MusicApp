@@ -11,12 +11,18 @@ module ApplicationHelper
     <<-HTML.html_safe
     <form action="#{session_url}" method="POST">
       #{ auth_token }
-      <input type="hidden"
-        name="_method"
-        value="delete"
-      >
+      #{ rest_modifier('delete')}
       <input type="submit" value="Log out">
     </form>
+    HTML
+  end
+
+  def rest_modifier(modifier)
+    <<-HTML.html_safe
+    <input type="hidden"
+      name="_method"
+      value="#{modifier}"
+    >
     HTML
   end
 end

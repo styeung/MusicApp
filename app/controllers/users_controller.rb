@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    #so this params[:id] basically takes it from the URL?
     @user = User.find(params[:id])
     render :show
   end
