@@ -1,0 +1,9 @@
+<form>
+  <%= auth_token %>
+  <%= rest_modifier(rest_modifier_string) %>
+  <label>
+    Note
+    <textarea name="note[content]"><%= @track.lyrics %>
+    </textarea>
+  </label>
+</form>

@@ -25,4 +25,14 @@ module ApplicationHelper
     >
     HTML
   end
+
+  # def ugly_lyrics(lyrics)
+  #   new_lyrics = []
+  #   lyrics_array = lyrics.split("")
+  #
+  #   (0...lyrics_array.length).each do |i|
+  #     if
+  #     new_lyrics << lyrics_array[i]
+  #
+  # end
 end

@@ -2,10 +2,15 @@
 <% current_band= Band.find(current_album.band_id)%>
 
 <h1><%= @track.name %> by <%= current_band.name %></h1>
-<h2><%= current_album.name %>
-<br>
+<h2><%= current_album.name %></h2>
 <p><i><%= @track.edition %> track</i></p>
-<br>
+<a href="<%= edit_track_url(@track) %>">Edit Track Info</a>
 <p>
 <%= @track.lyrics %>
+
 </p>
+<br>
+Add Note
+<%= render "notes/form", process: "create" %>
+<br>
+<%= render "notes/note", track: @track %>

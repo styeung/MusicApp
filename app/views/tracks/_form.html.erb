@@ -1,4 +1,8 @@
-<% current_album = @album %>
+<% if @album %>
+  <% current_album = @album %>
+<% else %>
+  <% current_album = Album.find(@track.album_id) %>
+<% end %>
 <% current_band = Band.find(current_album.band_id)%>
 
 <%if process == "create"%>

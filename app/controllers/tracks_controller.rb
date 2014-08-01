@@ -1,4 +1,6 @@
 class TracksController < ApplicationController
+  before_action :require_user!
+
   def new
     @album = Album.find(params[:album_id])
     @track = Track.new
@@ -44,7 +46,7 @@ class TracksController < ApplicationController
   end
 
   def track_params
-    params.require(:album).permit(:band_id, :name, :environment)
+    params.require(:track).permit(:album_id, :name, :edition, :lyrics)
   end
 
 end
